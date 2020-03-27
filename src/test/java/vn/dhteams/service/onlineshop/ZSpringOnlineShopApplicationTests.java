@@ -1,4 +1,4 @@
-package vn.dunglq.onlineshop;
+package vn.dhteams.service.onlineshop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

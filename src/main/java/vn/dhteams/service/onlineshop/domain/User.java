@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @JsonIgnoreProperties({ "password", "ngayTao", "nguoiTao", "ngaySua", "nguoiSua" })
-public class Users implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,7 +65,7 @@ public class Users implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Roles> roles;
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -140,11 +140,11 @@ public class Users implements Serializable {
 	}
 
 	@JsonIgnore
-    public Set<Roles> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Roles> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

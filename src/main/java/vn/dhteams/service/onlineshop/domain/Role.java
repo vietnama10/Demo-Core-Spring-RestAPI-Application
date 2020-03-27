@@ -15,8 +15,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "roles")
-public class Roles implements Serializable {
+@Table(name = "role")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,12 +29,12 @@ public class Roles implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "roles", fetch=FetchType.LAZY)
-    private Set<Users> users;
+    private Set<User> users;
 
-    public Roles() {
+    public Role() {
     }
 
-    public Roles(String name) {
+    public Role(String name) {
         this.name = name;
     }
 
@@ -55,11 +55,11 @@ public class Roles implements Serializable {
     }
 
     @JsonIgnore
-    public Set<Users> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 

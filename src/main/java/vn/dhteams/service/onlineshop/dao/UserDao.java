@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.User;
 import vn.dhteams.service.onlineshop.utils.Common;
 
 @Repository
@@ -19,7 +19,7 @@ public class UserDao {
 	@Autowired
 	private EntityManager entityManager;
 	
-	public List<Users> listUser(Pageable pageable, String sortData, String searchData) {
+	public List<User> listUser(Pageable pageable, String sortData, String searchData) {
 		StringBuilder sql = new StringBuilder();
 		Boolean firstClause = true;
 		Object userName = null;
@@ -61,7 +61,7 @@ public class UserDao {
 		}
 		sql.append(" ORDER BY ");
 		sql.append(sortData);
-		TypedQuery<Users> query = entityManager.createQuery(sql.toString(), Users.class);
+		TypedQuery<User> query = entityManager.createQuery(sql.toString(), User.class);
 		if(userName != null) {
 			query.setParameter("userName", userName.toString());
 		}

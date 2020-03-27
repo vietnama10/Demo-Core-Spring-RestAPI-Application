@@ -210,6 +210,6 @@ gradle-app.setting
 
 ### Ignore product cofiguration ###
 src/main/resources/application.yml
-pom.xml
+# pom.xml
 
 # End of https://www.gitignore.io/api/java,gradle,maven,eclipse,intellij

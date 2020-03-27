@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.User;
 import vn.dhteams.service.onlineshop.service.UserService;
 import vn.dhteams.service.onlineshop.utils.Messages;
 
@@ -44,7 +44,7 @@ public class UserController {
 		} catch (Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.ERROR_FETCH);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
@@ -60,7 +60,7 @@ public class UserController {
 		} catch (Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.ERROR_FETCH);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
@@ -75,7 +75,7 @@ public class UserController {
 		} catch (Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.ERROR_FETCH);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
@@ -90,7 +90,7 @@ public class UserController {
 		} catch (Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.ERROR_FETCH);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
@@ -107,32 +107,32 @@ public class UserController {
 		} catch(Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.ERROR_FETCH);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 		
 	}
 	
 	@PostMapping("")
-	public Map<String, Object> createUser(@RequestBody Users user) {
+	public Map<String, Object> createUser(@RequestBody User user) {
 		try {
 			return userService.createUser(user);
 		} catch(Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.FAILURE_CREATE);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
 	
 	@PutMapping("")
-	public Map<String, Object> updateUser(@RequestBody Users user) {
+	public Map<String, Object> updateUser(@RequestBody User user) {
 		try {
 			return userService.updateUser(user);
 		} catch(Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.FAILURE_UPDATE);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}
@@ -144,7 +144,7 @@ public class UserController {
 		} catch(Exception e) {
 			Map<String, Object> err = new HashMap<>();
 			err.put("msg", Messages.FAILURE_DELETE);
-			err.put("msg", false);
+			err.put("status", false);
 			return err;
 		}
 	}

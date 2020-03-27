@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.dhteams.service.onlineshop.domain.Roles;
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.Role;
+import vn.dhteams.service.onlineshop.domain.User;
 import vn.dhteams.service.onlineshop.repository.UserRepository;
 
 @Service
@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
     @Transactional
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Users user = userRepository.findByUserName(userName);
+        User user = userRepository.findByUserName(userName);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -34,8 +34,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }*/
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        Set<Roles> roles = user.getRoles();
-        for (Roles role : roles) {
+        Set<Role> roles = user.getRoles();
+        for (Role role : roles) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 

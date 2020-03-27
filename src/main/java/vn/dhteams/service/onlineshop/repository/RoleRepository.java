@@ -2,9 +2,9 @@ package vn.dhteams.service.onlineshop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import vn.dhteams.service.onlineshop.domain.Roles;
+import vn.dhteams.service.onlineshop.domain.Role;
 
-public interface RoleRepository extends JpaRepository<Roles, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
-	public Roles findByName(String roleName);
+	public Role findByName(String roleName);
 }

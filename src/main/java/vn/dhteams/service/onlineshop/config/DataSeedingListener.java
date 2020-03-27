@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import vn.dhteams.service.onlineshop.domain.OauthClientDetails;
-import vn.dhteams.service.onlineshop.domain.Roles;
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.Role;
+import vn.dhteams.service.onlineshop.domain.User;
 import vn.dhteams.service.onlineshop.repository.OauthClientDetailsRepository;
 import vn.dhteams.service.onlineshop.repository.RoleRepository;
 import vn.dhteams.service.onlineshop.repository.UserRepository;
@@ -34,29 +34,29 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
         // Roles
         if (roleRepository.findByName("ROLE_ADMIN") == null) {
-            roleRepository.save(new Roles("ROLE_ADMIN"));
+            roleRepository.save(new Role("ROLE_ADMIN"));
         }
         
         if (roleRepository.findByName("ROLE_CLIENT") == null) {
-            roleRepository.save(new Roles("ROLE_CLIENT"));
+            roleRepository.save(new Role("ROLE_CLIENT"));
         }
 
         if (roleRepository.findByName("ROLE_MEMBER") == null) {
-            roleRepository.save(new Roles("ROLE_CUSTOMER"));
+            roleRepository.save(new Role("ROLE_CUSTOMER"));
         }
         
         if (roleRepository.findByName("ROLE_GUEST") == null) {
-            roleRepository.save(new Roles("ROLE_GUEST"));
+            roleRepository.save(new Role("ROLE_GUEST"));
         }
 
         // Admin account
         if (userRepository.findByUserName("admin") == null) {
-            Users admin = new Users();
+            User admin = new User();
             admin.setUserName("admin");
             admin.setPassword(passwordEncoder.encode("One23456!"));
             admin.setFullName("Administrator");
             admin.setTrangThai("active");
-            HashSet<Roles> roles = new HashSet<>();
+            HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByName("ROLE_ADMIN"));
             roles.add(roleRepository.findByName("ROLE_CUSTOMER"));
             roles.add(roleRepository.findByName("ROLE_CLIENT"));
@@ -67,12 +67,12 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 
         // Member account
         if (userRepository.findByUserName("member") == null) {
-            Users user = new Users();
+            User user = new User();
             user.setUserName("member");
             user.setPassword(passwordEncoder.encode("One23456!"));
             user.setFullName("Member");
             user.setTrangThai("active");
-            HashSet<Roles> roles = new HashSet<>();
+            HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByName("ROLE_CUSTOMER"));
             user.setRoles(roles);
             userRepository.save(user);

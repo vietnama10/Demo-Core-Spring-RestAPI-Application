@@ -14,7 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import vn.dhteams.service.onlineshop.dao.UserDao;
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.User;
 import vn.dhteams.service.onlineshop.dto.PaginationDto;
 import vn.dhteams.service.onlineshop.repository.UserRepository;
 import vn.dhteams.service.onlineshop.utils.Messages;
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Map<String, Object> createUser(Users user) {
+	public Map<String, Object> createUser(User user) {
 		Map<String, Object> result = new HashMap<>();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		user.setNguoiTao(auth.getName());
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Map<String, Object> updateUser(Users user) {
+	public Map<String, Object> updateUser(User user) {
 		Map<String, Object> result = new HashMap<>();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		user.setNguoiSua(auth.getName());
@@ -85,9 +85,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String, Object> deleteUser(List<Long> userIds) {
 		Map<String, Object> result = new HashMap<>();
-		List<Users> listUserWillDelete = new ArrayList<>();
+		List<User> listUserWillDelete = new ArrayList<>();
 		userIds.forEach(id -> {
-			Optional<Users> opUser = userRepository.findById(id);
+			Optional<User> opUser = userRepository.findById(id);
 			if(opUser.isPresent()) {
 				listUserWillDelete.add(opUser.get());
 			}

@@ -2,9 +2,9 @@ package vn.dhteams.service.onlineshop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import vn.dhteams.service.onlineshop.domain.Users;
+import vn.dhteams.service.onlineshop.domain.User;
 
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-	public Users findByUserName(String userName);
+	public User findByUserName(String userName);
 }
